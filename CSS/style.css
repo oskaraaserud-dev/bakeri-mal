@@ -171,25 +171,35 @@ footer a {
 }
 
 @media (max-width: 600px) {
-    h1 {
-        font-size: 20px;
-    }
+  /* Større tekst på mobil */
+  body {
+    font-size: 18px;
+  }
 
-    main {
-        padding: 10px;
-    }
-    
-    table {
-        display: block;
-        overflow-x: auto;
-    }
+  h1 {
+    font-size: 24px;
+  }
 
-    .forsidebilde img, .omoss-bilde {
-        max-height: 200px;
-    }
+  h2 {
+    font-size: 22px;
+  }
 
-    .knapp {
-        display: block;
-        text-align: center;
-    }
+  h3 {
+    font-size: 20px;
+  }
+
+  .knapp {
+    padding: 15px 30px;
+    font-size: 18px;
+  }
+
+  input, textarea {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  button {
+    font-size: 18px;
+    padding: 15px 25px;
+  }
 }
