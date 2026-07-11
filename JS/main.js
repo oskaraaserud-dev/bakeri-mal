@@ -54,4 +54,19 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
   }
+
+  // 3) Myk scroll til toppen når man klikker logo/navn og allerede er på forsiden.
+  //    På andre sider oppfører lenka seg normalt (navigerer til index.html).
+  var brand = document.querySelector('a.brand');
+  if (brand) {
+    var sti = window.location.pathname;
+    var paaForsiden = sti.endsWith('/') || sti.endsWith('/index.html') || sti === '/index.html';
+    if (paaForsiden) {
+      brand.addEventListener('click', function (e) {
+        e.preventDefault();
+        var reduser = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: 0, behavior: reduser ? 'auto' : 'smooth' });
+      });
+    }
+  }
 });
