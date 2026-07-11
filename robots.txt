@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://oskaraaserud-dev.github.io/glasur/sitemap.xml
+Sitemap: https://oskaraaserud-dev.github.io/generisk_bakeri/sitemap.xml

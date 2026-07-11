@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustrasjon av et bakeri">
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f0e4d3"/>
+      <stop offset="1" stop-color="#e2d0b8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#wall)"/>
+  <!-- disk -->
+  <rect x="0" y="560" width="1200" height="240" fill="#5a3418"/>
+  <rect x="0" y="560" width="1200" height="26" fill="#6f4423"/>
+  <!-- hylle -->
+  <rect x="120" y="250" width="960" height="14" rx="7" fill="#5a3418" opacity="0.7"/>
+  <!-- brød og bakverk på disken -->
+  <g stroke="#5a3418" stroke-width="4" fill="#d79a58">
+    <ellipse cx="300" cy="540" rx="90" ry="40"/>
+    <ellipse cx="600" cy="545" rx="70" ry="34" fill="#e6a86b"/>
+    <ellipse cx="880" cy="540" rx="95" ry="42" fill="#c98a44"/>
+  </g>
+  <g fill="none" stroke="#5a3418" stroke-width="3" opacity="0.6">
+    <path d="M260 520 l20 40 M300 512 l16 48 M340 520 l-16 40"/>
+    <path d="M600 512 a18 18 0 1 1 -0.1 0"/>
+    <path d="M600 512 a40 40 0 1 1 -30 56"/>
+  </g>
+  <!-- krukker på hylla -->
+  <g fill="#c98a44" stroke="#5a3418" stroke-width="4">
+    <rect x="360" y="200" width="70" height="50" rx="8"/>
+    <rect x="560" y="196" width="80" height="54" rx="8"/>
+    <rect x="770" y="204" width="66" height="46" rx="8"/>
+  </g>
+  <!-- hengelampe -->
+  <g stroke="#5a3418" stroke-width="4" fill="none">
+    <path d="M600 60 V120"/>
+    <path d="M560 120 h80 l-14 40 h-52 Z" fill="#e6a86b"/>
+  </g>
+  <!-- damp/duft -->
+  <g fill="none" stroke="#5a3418" stroke-width="3" opacity="0.3" stroke-linecap="round">
+    <path d="M300 490 q-12 -20 0 -40 q12 -20 0 -40"/>
+    <path d="M880 490 q12 -20 0 -40 q-12 -20 0 -40"/>
+  </g>
+</svg>

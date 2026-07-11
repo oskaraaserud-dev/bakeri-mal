@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Bakeri-logo: hvetekorn">
+  <circle cx="100" cy="100" r="90" fill="none" stroke="#f5f0eb" stroke-width="3" opacity="0.85"/>
+  <g fill="none" stroke="#f5f0eb" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- stilk -->
+    <path d="M100 150 V70"/>
+    <!-- aks-korn, venstre og høyre par -->
+    <path d="M100 78 q-20 -6 -26 -24 q20 2 26 18"/>
+    <path d="M100 78 q20 -6 26 -24 q-20 2 -26 18"/>
+    <path d="M100 98 q-20 -6 -26 -24 q20 2 26 18"/>
+    <path d="M100 98 q20 -6 26 -24 q-20 2 -26 18"/>
+    <path d="M100 118 q-20 -6 -26 -24 q20 2 26 18"/>
+    <path d="M100 118 q20 -6 26 -24 q-20 2 -26 18"/>
+    <!-- blad nederst -->
+    <path d="M100 150 q-22 -4 -30 -22 q20 0 30 14"/>
+    <path d="M100 150 q22 -4 30 -22 q-20 0 -30 14"/>
+  </g>
+</svg>
