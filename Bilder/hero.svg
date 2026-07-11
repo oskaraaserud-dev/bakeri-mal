@@ -5,8 +5,9 @@
       <stop offset="0.55" stop-color="#4a2712"/>
       <stop offset="1" stop-color="#341a0c"/>
     </linearGradient>
-    <radialGradient id="glow" cx="50%" cy="38%" r="55%">
-      <stop offset="0" stop-color="#c88a4e" stop-opacity="0.55"/>
+    <radialGradient id="glow" cx="50%" cy="34%" r="55%">
+      <stop offset="0" stop-color="#f5c842" stop-opacity="0.42"/>
+      <stop offset="0.55" stop-color="#c88a4e" stop-opacity="0.14"/>
       <stop offset="1" stop-color="#c88a4e" stop-opacity="0"/>
     </radialGradient>
   </defs>
@@ -14,24 +15,20 @@
   <rect width="1600" height="900" fill="url(#glow)"/>
   <!-- spredt bakverk i fin linjekunst -->
   <g fill="none" stroke="#f0e2cf" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.28">
-    <!-- croissant -->
     <g transform="translate(250 250) rotate(-12)">
       <path d="M-70 20 q35 -55 140 0 q-70 30 -140 0 Z"/>
       <path d="M-40 12 q35 -30 80 0"/>
       <path d="M-10 6 q20 -18 40 0"/>
     </g>
-    <!-- kanelsnurr -->
     <g transform="translate(1280 240)">
       <circle r="70"/>
       <path d="M0 0 a20 20 0 1 1 -0.1 0" />
       <path d="M0 0 a44 44 0 1 1 -34 62"/>
     </g>
-    <!-- brød -->
     <g transform="translate(1150 690)">
       <ellipse rx="120" ry="60"/>
       <path d="M-70 -30 l30 60 M-20 -44 l24 88 M40 -40 l18 80"/>
     </g>
-    <!-- hv-teaks -->
     <g transform="translate(360 690)" stroke-width="3">
       <path d="M0 90 V-40"/>
       <path d="M0 -20 q-24 -8 -30 -30 q24 3 30 20"/>
@@ -42,8 +39,8 @@
       <path d="M0 40 q24 -8 30 -30 q-24 3 -30 20"/>
     </g>
   </g>
-  <!-- flyktige "mel"-prikker -->
-  <g fill="#f0e2cf" opacity="0.18">
+  <!-- gule "mel"-prikker (aksent) -->
+  <g fill="#f5c842" opacity="0.5">
     <circle cx="700" cy="200" r="4"/>
     <circle cx="900" cy="140" r="3"/>
     <circle cx="820" cy="620" r="4"/>

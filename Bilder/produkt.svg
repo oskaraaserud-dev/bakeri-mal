@@ -1,25 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustrasjon av en kanelsnurr">
-  <defs>
-    <radialGradient id="bun" cx="50%" cy="42%" r="60%">
-      <stop offset="0" stop-color="#e6a86b"/>
-      <stop offset="0.7" stop-color="#c07f3e"/>
-      <stop offset="1" stop-color="#8a5223"/>
-    </radialGradient>
-  </defs>
   <rect width="400" height="400" fill="#efe4d4"/>
-  <circle cx="200" cy="185" r="118" fill="#7a4a20" opacity="0.25"/>
-  <circle cx="200" cy="178" r="112" fill="url(#bun)"/>
-  <g fill="none" stroke="#5a3418" stroke-width="7" stroke-linecap="round" opacity="0.85">
-    <path d="M200 178 m0 0 a14 14 0 1 1 -0.1 0"/>
-    <path d="M200 178 a34 34 0 1 1 -24 58"/>
-    <path d="M200 178 a62 62 0 1 1 -52 100"/>
-    <path d="M200 178 a90 90 0 1 1 -78 140"/>
+  <ellipse cx="200" cy="312" rx="122" ry="16" fill="#7a4a20" opacity="0.15"/>
+  <circle cx="200" cy="192" r="120" fill="#a05f27"/>
+  <circle cx="200" cy="185" r="112" fill="#c98a44"/>
+  <g fill="none" stroke="#5a3418" stroke-width="7" stroke-linecap="round" opacity="0.9">
+    <circle cx="200" cy="185" r="16"/>
+    <path d="M200 185 a40 40 0 1 1 -30 56"/>
+    <path d="M200 185 a70 70 0 1 1 -60 108"/>
+    <path d="M200 185 a98 98 0 1 1 -86 150"/>
   </g>
-  <g fill="#5a3418" opacity="0.5">
-    <circle cx="168" cy="150" r="4"/>
-    <circle cx="236" cy="196" r="4"/>
-    <circle cx="196" cy="236" r="4"/>
-    <circle cx="150" cy="200" r="4"/>
-  </g>
-  <ellipse cx="200" cy="300" rx="120" ry="14" fill="#7a4a20" opacity="0.15"/>
+  <!-- gul melis-dryss (aksent) -->
+  <path d="M144 168 q16 15 32 0 q16 -15 32 0 q16 15 32 0 q16 -15 32 0" fill="none" stroke="#f5c842" stroke-width="8" stroke-linecap="round"/>
 </svg>

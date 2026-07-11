@@ -1,3 +1,11 @@
+/* Fargepalett – én kilde til sannhet */
+:root {
+    --brun-mork: #3b1f0e;   /* mørk brun: header, hero-bunn, tekst */
+    --brun: #8B4513;        /* medium brun: aksent, hover, lenker */
+    --krem: #f5f0eb;        /* lys bakgrunn */
+    --gul: #f5c842;         /* gul aksent: CTA, detaljer */
+}
+
 @media (prefers-reduced-motion: no-preference) {
     html { scroll-behavior: smooth; }
 }
@@ -12,10 +20,25 @@ body {
 h1, h2, h3 {
     font-family: 'Quicksand', 'Segoe UI', sans-serif;
     letter-spacing: 0.3px;
+    line-height: 1.2;
 }
 
 h1 {
     color: white;
+    font-size: clamp(1.6rem, 3vw, 2rem);
+}
+
+h2 {
+    font-size: clamp(1.4rem, 2.6vw, 1.75rem);
+}
+
+h3 {
+    font-size: 1.2rem;
+}
+
+/* Undersidenes hero-tittel («Meny», «Om oss») – tydeligere enn vanlig h2 */
+section.hero h2 {
+    font-size: clamp(2rem, 5vw, 2.8rem);
 }
 
 header {
@@ -164,7 +187,7 @@ a.brand:focus-visible {
 }
 
 .kjevle-link:focus-visible {
-    outline: 2px solid #8B4513;
+    outline: 2px solid var(--brun);
     outline-offset: 2px;
     border-radius: 4px;
 }
@@ -174,7 +197,7 @@ a.brand:focus-visible {
 }
 
 .kjevle-link[aria-current="page"] .kjevle-label {
-    color: #8B4513;
+    color: var(--brun);
 }
 
 main {
@@ -297,7 +320,7 @@ button:focus-visible {
 
 input:focus, textarea:focus {
     outline: none;
-    border-color: #8B4513;
+    border-color: var(--brun);
     box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.15);
 }
 
@@ -313,7 +336,7 @@ button {
 }
 
 button:hover {
-    background-color: #8B4513;
+    background-color: var(--brun);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
@@ -325,7 +348,7 @@ a {
 }
 
 a:focus-visible {
-    outline: 2px solid #8B4513;
+    outline: 2px solid var(--brun);
     outline-offset: 2px;
 }
 
@@ -338,7 +361,7 @@ a:focus-visible {
 }
 
 .pris {
-  color: #8B4513;
+  color: var(--brun);
   font-weight: bold;
 }
 
@@ -478,7 +501,7 @@ a:focus-visible {
 }
 
 .knapp:hover {
-  background-color: #8B4513;
+  background-color: var(--brun);
   color: white;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -510,7 +533,7 @@ footer a:hover {
 }
 
 main a {
-  color: #8B4513;
+  color: var(--brun);
   font-weight: 600;
 }
 
@@ -600,18 +623,6 @@ main a:hover {
 
   .kjevle-link {
     font-size: 8.5px;
-  }
-
-  h1 {
-    font-size: 24px;
-  }
-
-  h2 {
-    font-size: 22px;
-  }
-
-  h3 {
-    font-size: 20px;
   }
 
   .knapp {
