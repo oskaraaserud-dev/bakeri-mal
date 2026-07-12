@@ -56,21 +56,49 @@
   <div id="feil"></div>
   <div id="ut"></div>
 
-  <script src="../config.js"></script>
-  <script src="../JS/mal.js"></script>
+  <script>
+  /* Finn RIKTIG config.js.
+
+     I et kundeprosjekt er malen en submodule, så denne fila ligger på
+     mal/verktoy/publiser.html og kundens config er TO nivåer opp.
+     I malen selv ligger den på verktoy/publiser.html og malens egen config
+     er ETT nivå opp.
+
+     Vi prøver kundens først. Finnes den ikke, faller vi tilbake til malens.
+     Uten dette ville verktøyet i et kundeprosjekt lest malens generiske
+     config og generert «Ditt Bakeri»-tagger til kunden. */
+  (function () {
+    function last(sti) {
+      return new Promise(function (ok, nei) {
+        var s = document.createElement('script');
+        s.src = sti;
+        s.onload = function () { ok(sti); };
+        s.onerror = function () { nei(sti); };
+        document.head.appendChild(s);
+      });
+    }
+    window.CONFIG_KLAR = last('../../config.js')
+      .catch(function () { return last('../config.js'); })
+      .then(function (sti) { return last('../JS/mal.js').then(function () { return sti; }); });
+  })();
+  </script>
   <script>
   (function () {
     'use strict';
-    var M = window.MAL;
     var ut = document.getElementById('ut');
     var feil = document.getElementById('feil');
 
-    if (!M || !window.BAKERI) {
+    window.CONFIG_KLAR.then(function (configSti) {
+      var M = window.MAL;
+      if (!M || !window.BAKERI) throw new Error('config lastet, men window.BAKERI mangler');
+      tegn(M, configSti);
+    })['catch'](function () {
       feil.innerHTML = '<div class="feil"><strong>Fant ikke config.js.</strong> ' +
-        'Åpne denne fila fra <code>verktoy/</code>-mappa i prosjektet, ikke løsrevet.</div>';
-      return;
-    }
+        'Åpne denne fila der den ligger i prosjektet (<code>mal/verktoy/publiser.html</code> ' +
+        'i et kundeprosjekt), ikke løsrevet.</div>';
+    });
 
+    function tegn(M, configSti) {
     var hent = M.hent, esc = M.esc, abs = M.abs;
 
     // --- Advar om ting som ofte glemmes ---------------------------------
@@ -243,14 +271,17 @@
       { tittel: '5. robots.txt',  hjelp: 'Erstatt hele fila.', innhold: robots(), rader: 5 }
     ];
 
-    ut.innerHTML = blokker.map(function (b, i) {
-      return '<div class="steg">' +
-        '<h2>' + b.tittel + '</h2>' +
-        '<p>' + b.hjelp + '</p>' +
-        '<textarea id="ta' + i + '" rows="' + b.rader + '" readonly>' + esc(b.innhold) + '</textarea>' +
-        '<button data-mal="' + i + '">Kopier</button> <span id="ok' + i + '"></span>' +
-      '</div>';
-    }).join('');
+    ut.innerHTML =
+      '<p class="ingress">Leste <code>' + esc(configSti) + '</code> – bedrift: <strong>' +
+        esc(navn) + '</strong></p>' +
+      blokker.map(function (b, i) {
+        return '<div class="steg">' +
+          '<h2>' + b.tittel + '</h2>' +
+          '<p>' + b.hjelp + '</p>' +
+          '<textarea id="ta' + i + '" rows="' + b.rader + '" readonly>' + esc(b.innhold) + '</textarea>' +
+          '<button data-mal="' + i + '">Kopier</button> <span id="ok' + i + '"></span>' +
+        '</div>';
+      }).join('');
 
     ut.addEventListener('click', function (e) {
       var i = e.target.getAttribute('data-mal');
@@ -261,6 +292,7 @@
       if (navigator.clipboard) navigator.clipboard.writeText(ta.value)['catch'](function () {});
       document.getElementById('ok' + i).innerHTML = '<span class="ok">Kopiert ✓</span>';
     });
+    }
   })();
   </script>
 </body>
