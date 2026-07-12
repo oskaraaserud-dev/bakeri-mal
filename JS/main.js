@@ -41,11 +41,18 @@
 
   /* ---------- 1) Tekst- og attributt-slots -------------------------------- */
 
+  // Fallback-tekst i HTML-en som ikke lenger stemmer med config. Samles opp
+  // her og rapporteres av devSjekk() – se forklaringen der.
+  var utdatert = [];
+
   function fyllSlots() {
     // <h1 data-bak="bedrift.navn">Ditt Bakeri</h1>
     alle('[data-bak]').forEach(function (el) {
-      var v = hent(el.getAttribute('data-bak'));
-      if (v) el.textContent = v;
+      var sti = el.getAttribute('data-bak');
+      var v = hent(sti);
+      if (!v) return;
+      if (el.textContent.trim() !== String(v).trim()) utdatert.push(sti);
+      el.textContent = v;
     });
 
     // <img data-bak-src="bilder.logo">
@@ -269,6 +276,16 @@
     if (ogTittel && navn && (ogTittel.getAttribute('content') || '').indexOf(navn) === -1) {
       console.warn('[bakeri-mal] <head> er i utakt: og:title nevner ikke "' + navn +
         '". Facebook viser da feil navn ved deling. Kjør verktoy/publiser.html på nytt.');
+    }
+
+    // Fallback-teksten i HTML-en er det no-JS-brukere OG crawlere som ikke
+    // kjører JS faktisk ser. Stemmer den ikke med config, viser rå HTML feil
+    // bedrift – i verste fall et feil telefonnummer som klikkbar lenke.
+    if (utdatert.length) {
+      console.warn('[bakeri-mal] Fallback-teksten i HTML-en er i utakt med config.js ' +
+        'for: ' + utdatert.join(', ') + '.\nJS retter det opp i nettleseren, men rå HTML ' +
+        '(no-JS, enkelte crawlere, «vis kilde») viser fortsatt de gamle verdiene. ' +
+        'Bak inn skallene på nytt – se «Bake inn fallback-teksten» i README.');
     }
   }
 

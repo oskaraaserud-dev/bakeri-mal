@@ -77,6 +77,36 @@ ferdige blokker du limer inn i `index.html`, `Meny.html`, `takk.html`, `sitemap.
 
 Kjører du siden lokalt, sier `main.js` fra i konsollen hvis head og config har kommet i utakt.
 
+### 7. Bak inn fallback-teksten
+
+HTML-skallene leveres med malens generiske tekst («Ditt Bakeri», `+47 22 00 00 00`) som
+fallback i slotene. JavaScript bytter den ut i nettleseren – men **rå HTML** er det
+no-JS-brukere, enkelte crawlere og «vis kilde» faktisk ser. Uten dette steget ville
+kundens side inneholdt malens telefonnummer som en klikkbar `tel:`-lenke.
+
+Bak derfor kundens egne verdier inn i skallene. Chrome kan gjøre det for deg – den
+rendrer siden med config påført og skriver ut resultatet:
+
+```bash
+CHROME="/c/Program Files/Google/Chrome/Application/chrome.exe"
+for f in index.html Meny.html takk.html; do
+  "$CHROME" --headless=new --disable-gpu --virtual-time-budget=10000 \
+    --dump-dom "file://$(pwd)/$f" \
+  | sed 's|<section class="reveal is-visible"|<section class="reveal"|g' > "$f.ny"
+  mv "$f.ny" "$f"
+done
+```
+
+`sed`-linja er viktig: den fjerner `is-visible`-klassen som scroll-observeren rakk å
+legge på seksjonene, slik at animasjonen fortsatt utløses ved scroll.
+
+Foretrekker du å slippe kommandolinja: åpne siden i nettleseren, høyreklikk `<html>` i
+DevTools → **Copy → Copy outerHTML**, og lim inn i fila.
+
+Skallene er altså **genererte artefakter** – `config.js` er fortsatt eneste sted du
+skriver data. Kjører du siden lokalt etter en config-endring, sier `main.js` fra i
+konsollen hvis fallback-teksten har blitt utdatert.
+
 ---
 
 ## Slik utvider du menyen
