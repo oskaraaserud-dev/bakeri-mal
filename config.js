@@ -165,7 +165,9 @@ window.BAKERI = {
       { tittel: 'Kaker til fest', tekst: 'Bursdags- og festkaker etter ønske – si fra hva du vil ha, så lager vi den.' },
       { tittel: 'Catering',       tekst: 'Skal du feire noe? Vi lager catering på bestilling, og tar kontakt for å avtale detaljene.' }
     ],
-    note: 'Prisene gjelder over disk og kan endre seg. Fullt utvalg får du i butikken.'
+    // I ingress/note/omOss kan du bruke **fet**, {telefon} og {epost}.
+    // Tokenene blir klikkbare lenker.
+    note: 'Prisene gjelder over disk og kan endre seg. Fullt utvalg får du i butikken – ring gjerne på {telefon} hvis du lurer på om vi har noe bestemt inne.'
   },
 
   /* --- Bestillingsskjema -------------------------------------------------

@@ -19,6 +19,26 @@
   function alle(v, rot) { return Array.prototype.slice.call((rot || document).querySelectorAll(v)); }
   function en(v, rot) { return (rot || document).querySelector(v); }
 
+  /* Rik tekst fra config: escapes FØRST, så tolkes et lite, lukket sett med
+     markører. Config kan dermed aldri injisere vilkårlig HTML, men du får
+     likevel uthevet tekst og klikkbar kontaktinfo midt i en setning.
+
+       **fet**      ->  <strong>fet</strong>
+       {telefon}    ->  klikkbar tel:-lenke
+       {epost}      ->  klikkbar mailto:-lenke                                */
+  function rik(tekst) {
+    var tlf = hent('kontakt.telefon'), tlfLenke = hent('kontakt.telefonTel');
+    var epost = hent('kontakt.epost');
+    return esc(tekst)
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\{telefon\}/g, tlfLenke
+        ? '<a class="kontakt-lenke" href="tel:' + esc(tlfLenke) + '">' + esc(tlf) + '</a>'
+        : esc(tlf))
+      .replace(/\{epost\}/g, epost
+        ? '<a class="kontakt-lenke" href="mailto:' + esc(epost) + '">' + esc(epost) + '</a>'
+        : '');
+  }
+
   /* ---------- 1) Tekst- og attributt-slots -------------------------------- */
 
   function fyllSlots() {
@@ -52,16 +72,17 @@
       if (v) el.setAttribute('href', 'mailto:' + v);
     });
 
-    // <div data-bak-avsnitt="bedrift.omOss">  ->  ett <p> per element.
-    // Du kan markere fet tekst med **stjerner** i config. Teksten escapes FØRST,
-    // og markøren konverteres etterpå – så config kan aldri injisere vilkårlig
-    // HTML, men du får likevel uthevet det som fortjener det.
+    // <p data-bak-rik="meny.note">  ->  tekst med **fet** og {telefon}/{epost}
+    alle('[data-bak-rik]').forEach(function (el) {
+      var v = hent(el.getAttribute('data-bak-rik'));
+      if (v) el.innerHTML = rik(v);
+    });
+
+    // <div data-bak-avsnitt="bedrift.omOss">  ->  ett <p> per element
     alle('[data-bak-avsnitt]').forEach(function (el) {
       var liste = hent(el.getAttribute('data-bak-avsnitt'), []);
       if (!liste.length) return;
-      el.innerHTML = liste.map(function (t) {
-        return '<p>' + esc(t).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>') + '</p>';
-      }).join('');
+      el.innerHTML = liste.map(function (t) { return '<p>' + rik(t) + '</p>'; }).join('');
     });
 
     // Adresse på én linje: "Storgata 1, 0155 Storby"
