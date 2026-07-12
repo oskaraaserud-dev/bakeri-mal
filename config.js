@@ -34,7 +34,7 @@ window.BAKERI = {
     navn: 'Ditt Bakeri',
     heroTittel: 'Velkommen til Ditt Bakeri',
     heroIngress: 'Lokalt bakeri og kafé midt i sentrum. Nybakt bakverk, kaker og kaffe – kom innom og spis inne, eller bestill kake og catering på nett.',
-    // Ett avsnitt per element.
+    // Ett avsnitt per element. Marker fet tekst med **stjerner**.
     omOss: [
       'Ditt Bakeri er et lokalt bakeri og kafé. Hos oss kan du sette deg ned med en kopp kaffe og noe nybakt, eller ta med deg godsaker hjem.',
       'Skal du feire noe? Vi lager kaker og catering på bestilling. Bruk skjemaet lenger ned, så tar vi kontakt.'

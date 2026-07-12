@@ -52,11 +52,16 @@
       if (v) el.setAttribute('href', 'mailto:' + v);
     });
 
-    // <div data-bak-avsnitt="bedrift.omOss">  ->  ett <p> per element
+    // <div data-bak-avsnitt="bedrift.omOss">  ->  ett <p> per element.
+    // Du kan markere fet tekst med **stjerner** i config. Teksten escapes FØRST,
+    // og markøren konverteres etterpå – så config kan aldri injisere vilkårlig
+    // HTML, men du får likevel uthevet det som fortjener det.
     alle('[data-bak-avsnitt]').forEach(function (el) {
       var liste = hent(el.getAttribute('data-bak-avsnitt'), []);
       if (!liste.length) return;
-      el.innerHTML = liste.map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('');
+      el.innerHTML = liste.map(function (t) {
+        return '<p>' + esc(t).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>') + '</p>';
+      }).join('');
     });
 
     // Adresse på én linje: "Storgata 1, 0155 Storby"
