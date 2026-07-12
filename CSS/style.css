@@ -1,9 +1,30 @@
-/* Fargepalett – én kilde til sannhet */
+/* ============================================================
+   Fargepalett og tema – én kilde til sannhet.
+
+   Verdiene under er MALENS standard (et nøytralt bakeri-uttrykk).
+   De overstyres i kjøretid av config.js: JS/mal.js leser
+   BAKERI.farger og setter disse variablene på :root før siden
+   males, så du får ingen fargeblink.
+
+   Vil du bytte farger på en kunde: rediger config.js – ikke denne fila.
+   ============================================================ */
 :root {
-    --brun-mork: #3b1f0e;   /* mørk brun: header, hero-bunn, tekst */
-    --brun: #8B4513;        /* medium brun: aksent, hover, lenker */
-    --krem: #f5f0eb;        /* lys bakgrunn */
-    --gul: #f5c842;         /* gul aksent: CTA, detaljer */
+    --brun-mork: #3b1f0e;      /* mørk: header, footer, hero-bunn, tekst */
+    --brun: #8B4513;           /* aksent: hover, lenker i main, fokus */
+    --krem: #f5f0eb;           /* lys bakgrunn: side og kort */
+    --gul: #f5c842;            /* CTA, fokusring, kategoristrek */
+    --gul-lys: #ffd966;        /* hover på gul CTA */
+    --tekst-dempet: #5a4636;   /* brødtekst i kort og ingresser */
+    --tekst-dempet-2: #6b5847; /* fotnoter, småtekst */
+    --kantlinje: #e7dccd;      /* skillelinjer, kortkanter */
+
+    /* RGB-triplett av de to brune – utledes automatisk fra hex av mal.js,
+       slik at rgba()-skygger og fokusglød følger merkevaren. */
+    --brun-mork-rgb: 59, 31, 14;
+    --brun-rgb: 139, 69, 19;
+
+    /* Hero-bakgrunnen. Settes fra config.bilder.hero. */
+    --hero-bilde: url('../Bilder/hero.svg');
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -12,12 +33,12 @@
 
 body {
     margin: 0;
-    background-color: #f5f0eb;
+    background-color: var(--krem);
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.6;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
     font-family: 'Quicksand', 'Segoe UI', sans-serif;
     letter-spacing: 0.3px;
     line-height: 1.2;
@@ -42,7 +63,7 @@ section.hero h2 {
 }
 
 header {
-    background-color: #3b1f0e;
+    background-color: var(--brun-mork);
     color: white;
     padding: 20px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
@@ -68,7 +89,7 @@ header.over-hero {
 }
 
 header.over-hero.is-solid {
-    background-color: #3b1f0e;
+    background-color: var(--brun-mork);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
     padding-top: 14px;
     padding-bottom: 14px;
@@ -93,7 +114,7 @@ a.brand:hover {
 }
 
 a.brand:focus-visible {
-    outline: 2px solid #f5f0eb;
+    outline: 2px solid var(--krem);
     outline-offset: 4px;
 }
 
@@ -113,7 +134,7 @@ a.brand:focus-visible {
 .kjevle-handle {
     width: 40px;
     height: 26px;
-    background: linear-gradient(180deg, #8a5a34, #5a3820 55%, #3b1f0e);
+    background: linear-gradient(180deg, #8a5a34, #5a3820 55%, var(--brun-mork));
     box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.25);
     flex-shrink: 0;
 }
@@ -140,7 +161,7 @@ a.brand:focus-visible {
     padding: 0 26px;
     height: 48px;
     background: linear-gradient(180deg, #fffdf9, #f0e8db);
-    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.6), inset 0 -3px 6px rgba(59, 31, 14, 0.1);
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.6), inset 0 -3px 6px rgba(var(--brun-mork-rgb), 0.1);
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -154,7 +175,7 @@ a.brand:focus-visible {
     flex-direction: column;
     align-items: center;
     gap: 2px;
-    color: #3b1f0e;
+    color: var(--brun-mork);
     text-decoration: none;
     font-family: 'Quicksand', 'Segoe UI', sans-serif;
     font-size: 10.5px;
@@ -182,7 +203,7 @@ a.brand:focus-visible {
 
 .kjevle-link:hover .kjevle-icon-wrap,
 .kjevle-link:focus-visible .kjevle-icon-wrap {
-    background: #f5f0eb;
+    background: var(--krem);
     transform: translateY(-2px);
 }
 
@@ -193,7 +214,7 @@ a.brand:focus-visible {
 }
 
 .kjevle-link[aria-current="page"] .kjevle-icon-wrap {
-    background: #f5c842;
+    background: var(--gul);
 }
 
 .kjevle-link[aria-current="page"] .kjevle-label {
@@ -218,16 +239,16 @@ th, td {
 }
 
 th {
-    background-color: #3b1f0e;
+    background-color: var(--brun-mork);
     color: white;
 }
 
 tbody tr:hover td {
-    background-color: #f5f0eb;
+    background-color: var(--krem);
 }
 
 footer {
-    background-color: #3b1f0e;
+    background-color: var(--brun-mork);
     color: white;
     text-align: center;
     padding: 20px;
@@ -239,7 +260,7 @@ section {
     background-color: #ffffff;
     border-radius: 16px;
     padding: 32px 28px;
-    box-shadow: 0 4px 20px rgba(59, 31, 14, 0.06);
+    box-shadow: 0 4px 20px rgba(var(--brun-mork-rgb), 0.06);
 }
 
 section.hero {
@@ -284,7 +305,7 @@ input, textarea {
     left: 8px;
     top: -48px;
     z-index: 200;
-    background: #3b1f0e;
+    background: var(--brun-mork);
     color: #fff;
     padding: 10px 16px;
     border-radius: 8px;
@@ -294,7 +315,7 @@ input, textarea {
 
 .skip-link:focus {
     top: 8px;
-    outline: 2px solid #f5c842;
+    outline: 2px solid var(--gul);
     outline-offset: 2px;
 }
 
@@ -314,20 +335,20 @@ footer .kontakt-lenke {
 
 /* Fokusring på knapper, i tråd med resten av UI-et */
 button:focus-visible {
-    outline: 2px solid #f5c842;
+    outline: 2px solid var(--gul);
     outline-offset: 2px;
 }
 
 input:focus, textarea:focus {
     outline: none;
     border-color: var(--brun);
-    box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.15);
+    box-shadow: 0 0 0 3px rgba(var(--brun-rgb), 0.15);
 }
 
 button {
     margin-top: 15px;
     padding: 10px 20px;
-    background-color: #3b1f0e;
+    background-color: var(--brun-mork);
     color: white;
     border: none;
     border-radius: 5px;
@@ -342,7 +363,7 @@ button:hover {
 }
 
 a {
-    color: #f5c842;
+    color: var(--gul);
     text-decoration: none;
     transition: color 0.2s ease, opacity 0.2s ease;
 }
@@ -353,8 +374,8 @@ a:focus-visible {
 }
 
 .tilbud-kort {
-  background-color: #f5f0eb;
-  border: 2px solid #3b1f0e;
+  background-color: var(--krem);
+  border: 2px solid var(--brun-mork);
   border-radius: 8px;
   padding: 20px;
   max-width: 400px;
@@ -381,13 +402,13 @@ a:focus-visible {
   justify-content: center;
   text-align: center;
   overflow: hidden;
-  background: #3b1f0e;
+  background: var(--brun-mork);
 }
 
 .hero-full__bg {
   position: absolute;
   inset: 0;
-  background-image: url('../Bilder/hero.svg');
+  background-image: var(--hero-bilde);
   background-size: cover;
   background-position: center;
   transform: scale(1.12);
@@ -402,7 +423,7 @@ a:focus-visible {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(59, 31, 14, 0.55), rgba(59, 31, 14, 0.35) 45%, rgba(59, 31, 14, 0.8));
+  background: linear-gradient(180deg, rgba(var(--brun-mork-rgb), 0.62), rgba(var(--brun-mork-rgb), 0.5) 45%, rgba(var(--brun-mork-rgb), 0.84));
 }
 
 .hero-full__content {
@@ -430,11 +451,12 @@ a:focus-visible {
   margin: 0 auto 28px;
   max-width: 520px;
   color: #f3e8dc;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
 }
 
 .hero-full .knapp {
-  background-color: #f5c842;
-  color: #3b1f0e;
+  background-color: var(--gul);
+  color: var(--brun-mork);
   font-weight: 700;
   font-family: 'Quicksand', 'Segoe UI', sans-serif;
   padding: 14px 32px;
@@ -442,8 +464,8 @@ a:focus-visible {
 }
 
 .hero-full .knapp:hover {
-  background-color: #ffd966;
-  color: #3b1f0e;
+  background-color: var(--gul-lys);
+  color: var(--brun-mork);
 }
 
 /* Scroll-hint pil nederst i heroen */
@@ -493,7 +515,7 @@ a:focus-visible {
   display: inline-block;
   margin-top: 15px;
   padding: 12px 25px;
-  background-color: #3b1f0e;
+  background-color: var(--brun-mork);
   color: white;
   text-decoration: none;
   border-radius: 5px;
@@ -523,7 +545,7 @@ a:focus-visible {
 }
 
 footer a {
-  color: #f5c842;
+  color: var(--gul);
   text-decoration: none;
   margin: 0 10px;
 }
@@ -538,7 +560,7 @@ main a {
 }
 
 main a:hover {
-  color: #3b1f0e;
+  color: var(--brun-mork);
 }
 
 .omoss-bilde {
@@ -639,4 +661,258 @@ main a:hover {
     font-size: 18px;
     padding: 15px 25px;
   }
+}
+
+/* ============================================================
+   Seksjoner (hero-CTA, meny, prisliste, skjema, kart)
+   ============================================================ */
+
+/* Ankermål skal ikke havne bak den faste headeren */
+section[id] {
+  scroll-margin-top: 90px;
+}
+
+.seksjon-ingress {
+  color: var(--tekst-dempet);
+}
+
+/* ---- Hero: to CTA-er ---- */
+.hero-full__cta {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Sekundær «outline»-knapp */
+.knapp--sekundaer {
+  background-color: transparent;
+  color: var(--brun-mork);
+  border: 2px solid var(--brun);
+}
+.knapp--sekundaer:hover {
+  background-color: var(--brun);
+  color: #fff;
+}
+/* På den mørke heroen: lys outline i stedet */
+.hero-full .knapp--sekundaer {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.85);
+  background-color: transparent;
+}
+.hero-full .knapp--sekundaer:hover {
+  background-color: rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+
+/* ---- Meny / produktkort ---- */
+.produkt-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 8px;
+}
+.produkt-kort {
+  background: var(--krem);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 14px rgba(var(--brun-mork-rgb), 0.06);
+}
+.produkt-bilde {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+  background: var(--kantlinje);
+}
+.produkt-kort h3 {
+  margin: 14px 18px 6px;
+}
+.produkt-kort p {
+  margin: 0 18px 18px;
+  color: var(--tekst-dempet);
+}
+
+/* ---- Menyside ---- */
+/* Sentrert CTA under produktrutenettet ("Se full meny") */
+.meny-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+/* Kategorier uten produktfoto (kafé, catering) */
+.meny-kategorier {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+.meny-kategori {
+  background: var(--krem);
+  border-left: 4px solid var(--gul);
+  border-radius: 12px;
+  padding: 18px 20px;
+}
+.meny-kategori h3 {
+  margin: 0 0 4px;
+}
+.meny-kategori p {
+  margin: 0;
+  color: var(--tekst-dempet);
+}
+
+/* Menygruppe: én kategori i prislisten (Brød, Søtt bakverk, Kaker …) */
+.menygruppe + .menygruppe {
+  margin-top: 30px;
+}
+.menygruppe__tittel {
+  margin: 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--gul);
+  color: var(--brun-mork);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Prisliste: vare til venstre, pris til høyre */
+.prisliste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.prisrad {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 14px 0;
+  border-bottom: 1px dashed var(--kantlinje);
+}
+.prisrad:last-child {
+  border-bottom: none;
+}
+.prisrad__vare h4 {
+  margin: 0 0 2px;
+  font-size: 1.05rem;
+}
+.prisrad__vare p {
+  margin: 0;
+  color: var(--tekst-dempet);
+  font-size: 0.95rem;
+}
+.prisrad .pris {
+  white-space: nowrap;
+  font-size: 1.05rem;
+}
+
+.meny-note {
+  margin-top: 20px;
+  color: var(--tekst-dempet-2);
+  font-size: 0.95rem;
+}
+.meny-note .kontakt-lenke {
+  color: var(--brun);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* ---- Bestillingsskjema ---- */
+.skjema-rad {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 20px;
+}
+.skjema-felt {
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+}
+.skjema-felt label {
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+.bestill-skjema select {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 8px;
+  border: 1px solid var(--kantlinje);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1rem;
+  background: #fff;
+}
+.bestill-skjema select:focus {
+  outline: none;
+  border-color: var(--brun);
+  box-shadow: 0 0 0 3px rgba(var(--brun-rgb), 0.15);
+}
+.bestill-skjema .knapp {
+  margin-top: 18px;
+  border: none;
+  cursor: pointer;
+  font-size: 1.05rem;
+}
+.skjema-fallback {
+  margin-top: 14px;
+  color: var(--tekst-dempet);
+  font-size: 0.95rem;
+}
+.skjema-fallback .kontakt-lenke {
+  color: var(--brun);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.apningstider-note {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: var(--tekst-dempet-2);
+}
+
+/* ---- Kart & kontakt ---- */
+.kontakt-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+  margin-top: 8px;
+}
+.kart {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 14px rgba(var(--brun-mork-rgb), 0.08);
+  min-height: 300px;
+}
+.kart iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  border: 0;
+  display: block;
+}
+.kontakt-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+.kontakt-info .knapp {
+  margin-top: 10px;
+  align-self: flex-start;
+}
+
+/* ---- Mobil ---- */
+@media (max-width: 600px) {
+  .skjema-rad { grid-template-columns: 1fr; }
+  .kontakt-grid { grid-template-columns: 1fr; }
+  .kontakt-info .knapp { align-self: stretch; text-align: center; }
+  .produkt-bilde { height: 200px; }
 }

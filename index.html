@@ -3,165 +3,296 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Ditt Bakeri tilbyr nybakt bakverk og kaffe hver dag. Se meny, ukas tilbud og åpningstider. Besøk oss i Storgata 1, Oslo, nybakt fra klokken 07 hver dag.">
-  <title>Ditt Bakeri | Nybakt bakverk hver dag</title>
-  <link rel="canonical" href="https://oskaraaserud-dev.github.io/generisk_bakeri/">
+
+  <!-- ════════════════════════════════════════════════════════════════════════
+       GENERERT BLOKK – ikke skriv kundedata her for hånd.
+
+       Fyll ut config.js, åpne verktoy/publiser.html i nettleseren, og lim inn
+       blokka den lager. Head-en MÅ være statisk fordi Facebook, LinkedIn og
+       Slack ikke kjører JavaScript når de lager forhåndsvisning av en lenke –
+       de leser bare rå HTML. Fylte vi den i kjøretid, ville en deling vise
+       malens plassholdertekst i stedet for kundens navn.
+       ════════════════════════════════════════════════════════════════════════ -->
+  <title>Ditt Bakeri – Bakeri og kafé i Storby</title>
+  <meta name="description" content="Ditt Bakeri – lokalt bakeri og kafé. Nybakt bakverk, kaker og kaffe. Spis inne, eller forhåndsbestill kake og catering på nett.">
+  <link rel="canonical" href="https://brukernavn.github.io/ditt-bakeri/">
   <link rel="icon" href="Bilder/logo.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="CSS/style.css">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Ditt Bakeri">
   <meta property="og:locale" content="nb_NO">
-  <meta property="og:title" content="Ditt Bakeri | Nybakt bakverk hver dag">
-  <meta property="og:description" content="Ditt Bakeri tilbyr nybakt bakverk og kaffe hver dag. Se meny, ukas tilbud og åpningstider. Besøk oss i Storgata 1, Oslo, nybakt fra klokken 07 hver dag.">
-  <meta property="og:url" content="https://oskaraaserud-dev.github.io/generisk_bakeri/">
-  <meta property="og:image" content="https://oskaraaserud-dev.github.io/generisk_bakeri/Bilder/delingsbilde.png">
+  <meta property="og:title" content="Ditt Bakeri – Bakeri og kafé i Storby">
+  <meta property="og:description" content="Nybakt bakverk, kaker og kaffe. Spis inne, eller forhåndsbestill kake og catering på nett.">
+  <meta property="og:url" content="https://brukernavn.github.io/ditt-bakeri/">
+  <meta property="og:image" content="https://brukernavn.github.io/ditt-bakeri/Bilder/delingsbilde.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Ditt Bakeri, nybakt bakverk og kaffe hver dag">
-  <meta name="twitter:image" content="https://oskaraaserud-dev.github.io/generisk_bakeri/Bilder/delingsbilde.png">
+  <meta property="og:image:alt" content="Ditt Bakeri – lokalt bakeri og kafé">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://brukernavn.github.io/ditt-bakeri/Bilder/delingsbilde.png">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Bakery",
-    "@id": "https://oskaraaserud-dev.github.io/generisk_bakeri/",
+    "@id": "https://brukernavn.github.io/ditt-bakeri/",
     "name": "Ditt Bakeri",
-    "url": "https://oskaraaserud-dev.github.io/generisk_bakeri/",
-    "image": "https://oskaraaserud-dev.github.io/generisk_bakeri/Bilder/delingsbilde.png",
-    "telephone": "+47 22 33 44 55",
+    "url": "https://brukernavn.github.io/ditt-bakeri/",
+    "image": "https://brukernavn.github.io/ditt-bakeri/Bilder/delingsbilde.png",
+    "telephone": "+47 22 00 00 00",
     "email": "post@dittbakeri.no",
     "priceRange": "$$",
-    "hasMenu": "https://oskaraaserud-dev.github.io/generisk_bakeri/Meny.html",
+    "servesCuisine": ["Bakverk", "Kaker", "Kaffe"],
+    "areaServed": "Storby",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Storgata 1",
-      "addressLocality": "Oslo",
-      "postalCode": "0170",
+      "addressLocality": "Storby",
+      "postalCode": "0155",
+      "addressRegion": "Oslo",
       "addressCountry": "NO"
     },
-    "openingHoursSpecification": [{
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-      "opens": "07:00",
-      "closes": "16:00"
-    }],
-    "sameAs": [
-      "https://www.facebook.com/dittbakeri",
-      "https://www.instagram.com/dittbakeri/"
+    "geo": { "@type": "GeoCoordinates", "latitude": 59.9138688, "longitude": 10.7522454 },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "16:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday"], "opens": "10:00", "closes": "15:00" }
     ]
   }
   </script>
+  <!-- ═══════════════════════ SLUTT GENERERT BLOKK ═══════════════════════ -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="CSS/style.css">
+
+  <!-- config.js FØR mal.js: mal.js setter fargene på :root med én gang, så du
+       aldri ser malens farger blinke før kundens rekker å tre i kraft. -->
+  <script src="config.js"></script>
+  <script src="JS/mal.js"></script>
+
   <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
 </head>
 <body>
   <a class="skip-link" href="#innhold">Hopp til innhold</a>
-  <header class="over-hero">
-  <a class="brand" href="index.html" aria-label="Til forsiden">
-    <img src="Bilder/logo.svg" alt="" class="header-logo" width="48" height="48">
-    <h1 class="bakerinavn">Ditt Bakeri</h1>
-  </a>
 
-  <nav class="kjevle-nav" aria-label="Hovednavigasjon">
-    <span class="kjevle-handle" aria-hidden="true"></span>
-    <span class="kjevle-ring" aria-hidden="true"></span>
-    <ul class="kjevle-list">
-      <li>
-        <a href="index.html" class="kjevle-link" aria-current="page">
-          <span class="kjevle-icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9a1 1 0 0 0 1 1H9v-5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v5h2.5a1 1 0 0 0 1-1v-9"/></svg>
-          </span>
-          <span class="kjevle-label">Hjem</span>
-        </a>
-      </li>
-      <li>
-        <a href="Meny.html" class="kjevle-link">
-          <span class="kjevle-icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
-          </span>
-          <span class="kjevle-label">Meny</span>
-        </a>
-      </li>
-      <li>
-        <a href="OmOss.html" class="kjevle-link">
-          <span class="kjevle-icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16"/><circle cx="12" cy="7.5" r="0.9" fill="currentColor" stroke="none"/></svg>
-          </span>
-          <span class="kjevle-label">Om oss</span>
-        </a>
-      </li>
-    </ul>
-    <span class="kjevle-ring" aria-hidden="true"></span>
-    <span class="kjevle-handle" aria-hidden="true"></span>
-  </nav>
+  <header class="over-hero">
+    <a class="brand" href="#hjem" aria-label="Til toppen">
+      <img src="Bilder/logo.svg" data-bak-src="bilder.logo" alt="" class="header-logo" width="48" height="48">
+      <h1 data-bak="bedrift.navn">Ditt Bakeri</h1>
+    </a>
+
+    <nav class="kjevle-nav" aria-label="Hovednavigasjon">
+      <span class="kjevle-handle" aria-hidden="true"></span>
+      <span class="kjevle-ring" aria-hidden="true"></span>
+      <ul class="kjevle-list">
+        <li>
+          <a href="#hjem" class="kjevle-link">
+            <span class="kjevle-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9a1 1 0 0 0 1 1H9v-5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v5h2.5a1 1 0 0 0 1-1v-9"/></svg>
+            </span>
+            <span class="kjevle-label">Hjem</span>
+          </a>
+        </li>
+        <li>
+          <a href="#om-oss" class="kjevle-link">
+            <span class="kjevle-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16"/><circle cx="12" cy="7.5" r="0.9" fill="currentColor" stroke="none"/></svg>
+            </span>
+            <span class="kjevle-label">Om oss</span>
+          </a>
+        </li>
+        <li>
+          <a href="Meny.html" class="kjevle-link">
+            <span class="kjevle-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+            </span>
+            <span class="kjevle-label">Meny</span>
+          </a>
+        </li>
+        <li>
+          <a href="#bestill" class="kjevle-link">
+            <span class="kjevle-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg>
+            </span>
+            <span class="kjevle-label">Bestill</span>
+          </a>
+        </li>
+      </ul>
+      <span class="kjevle-ring" aria-hidden="true"></span>
+      <span class="kjevle-handle" aria-hidden="true"></span>
+    </nav>
   </header>
 
-  <section class="hero-full">
+  <section class="hero-full" id="hjem">
     <div class="hero-full__bg" aria-hidden="true"></div>
     <div class="hero-full__content">
-      <img src="Bilder/logo.svg" alt="" class="hero-full__logo reveal is-visible" width="130" height="130">
-      <h2 class="reveal is-visible reveal-delay-1">Velkommen til <span class="bakerinavn">Ditt Bakeri</span></h2>
-      <p class="reveal is-visible reveal-delay-2">Nybakt bakverk og nytraktet kaffe hver dag. Kom innom og kjenn duften!</p>
-      <a href="Meny.html" class="knapp reveal is-visible reveal-delay-3">Se vår meny</a>
+      <img src="Bilder/logo.svg" data-bak-src="bilder.logo" alt="" class="hero-full__logo reveal is-visible" width="130" height="130">
+      <h2 class="reveal is-visible reveal-delay-1" data-bak="bedrift.heroTittel">Velkommen til Ditt Bakeri</h2>
+      <p class="reveal is-visible reveal-delay-2" data-bak="bedrift.heroIngress">Lokalt bakeri og kafé midt i sentrum. Nybakt bakverk, kaker og kaffe – kom innom og spis inne, eller bestill kake og catering på nett.</p>
+      <div class="hero-full__cta reveal is-visible reveal-delay-3">
+        <a href="#bestill" class="knapp">Bestill nå</a>
+        <a href="Meny.html" class="knapp knapp--sekundaer">Se meny</a>
+      </div>
     </div>
-    <a href="#innhold" class="scroll-hint" aria-label="Bla ned">
+    <a href="#om-oss" class="scroll-hint" aria-label="Bla ned">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
     </a>
   </section>
 
   <main id="innhold">
-  <section class="reveal">
-  <h2>Ukas tilbud</h2>
-  <p>Denne uken anbefaler vi:</p>
 
-  <div class="tilbud-kort">
-    <h3>Kanelsnurr</h3>
-    <p>Vår klassiske kanelsnurr, nybakt hver morgen.</p>
-    <p class="pris">Kun 30 kr denne uken! (Vanlig pris 40 kr)</p>
-  </div>
-</section>
-  <section class="reveal">
-  <h2>Åpningstider</h2>
-  <table class="apningstider">
-    <tr><th scope="row">Mandag</th><td>07:00 - 16:00</td></tr>
-    <tr><th scope="row">Tirsdag</th><td>Stengt</td></tr>
-    <tr><th scope="row">Onsdag</th><td>07:00 - 16:00</td></tr>
-    <tr><th scope="row">Torsdag</th><td>07:00 - 16:00</td></tr>
-    <tr><th scope="row">Fredag</th><td>07:00 - 16:00</td></tr>
-    <tr><th scope="row">Lørdag</th><td>07:00 - 16:00</td></tr>
-    <tr><th scope="row">Søndag</th><td>07:00 - 16:00</td></tr>
-  </table>
-</section>
-    <section class="reveal">
-      <h2>Kontaktskjema</h2>
-  <form action="https://formsubmit.co/oskar@aaserudweb.no" method="POST">
-    <input type="hidden" name="_subject" value="Ny melding fra bakeri-demoen">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_next" value="takk.html">
-
-    <label for="navn">Navn:</label>
-    <input type="text" id="navn" name="Navn" placeholder="Ola Nordmann" autocomplete="name" required>
-
-    <label for="epost">E-post:</label>
-    <input type="email" id="epost" name="E-post" placeholder="din@epost.no" autocomplete="email" required>
-
-    <label for="melding">Melding:</label>
-    <textarea id="melding" name="Melding" rows="5" required></textarea>
-
-    <button type="submit">Send</button>
-  </form>
+    <!-- ===== OM OSS ===== -->
+    <section class="reveal" id="om-oss">
+      <h2>Om oss</h2>
+      <div data-bak-avsnitt="bedrift.omOss">
+        <p>Ditt Bakeri er et lokalt bakeri og kafé. Hos oss kan du sette deg ned med en kopp kaffe og noe nybakt, eller ta med deg godsaker hjem.</p>
+        <p>Skal du feire noe? Vi lager kaker og catering på bestilling. Bruk skjemaet lenger ned, så tar vi kontakt.</p>
+      </div>
     </section>
- </main>
- <footer>
-  <p><span aria-hidden="true">📍</span> <span class="sr-only">Adresse:</span> Storgata 1, 0170 Oslo</p>
-  <p><span aria-hidden="true">📞</span> <span class="sr-only">Telefon:</span> <a class="kontakt-lenke" href="tel:+4722334455">+47 22 33 44 55</a></p>
-  <p><span aria-hidden="true">📧</span> <span class="sr-only">E-post:</span> <a class="kontakt-lenke" href="mailto:post@dittbakeri.no">post@dittbakeri.no</a></p>
-  <p>© 2026 <span class="bakerinavn">Ditt Bakeri</span></p>
-  <a href="https://www.facebook.com/dittbakeri" target="_blank" rel="noopener noreferrer">Facebook</a>
-<a href="https://www.instagram.com/dittbakeri/" target="_blank" rel="noopener noreferrer">Instagram</a>
-</footer>
+
+    <!-- ===== MENY (smakebit) =====
+         Kortene bygges fra config.produkter. Innholdet under er fallback
+         som vises hvis JavaScript er slått av. -->
+    <section class="reveal" id="meny">
+      <h2>Meny</h2>
+      <p class="seksjon-ingress">Alt bakes fra bunnen. Her er noen av spesialitetene våre – se full meny for hele utvalget og priser.</p>
+
+      <div class="produkt-grid">
+        <article class="produkt-kort">
+          <img src="Bilder/produkt.svg" alt="Ferskt bakverk i disken" class="produkt-bilde" width="800" height="800" loading="lazy">
+          <h3>Bakverk</h3>
+          <p>Nybakt brød, boller, snurrer og wienerbrød – ferskt fra disken hver dag.</p>
+        </article>
+        <article class="produkt-kort">
+          <img src="Bilder/produkt.svg" alt="Kake pyntet til fest" class="produkt-bilde" width="800" height="800" loading="lazy">
+          <h3>Kaker til fest</h3>
+          <p>Bursdags- og festkaker etter ønske. Bestilles på forhånd.</p>
+        </article>
+        <article class="produkt-kort">
+          <img src="Bilder/produkt.svg" alt="Nystekte smultringer" class="produkt-bilde" width="800" height="800" loading="lazy">
+          <h3>Smultringer</h3>
+          <p>Nystekte smultringer, en ekte klassiker rett fra disken.</p>
+        </article>
+      </div>
+
+      <div class="meny-cta">
+        <a href="Meny.html" class="knapp">Se full meny</a>
+      </div>
+    </section>
+
+    <!-- ===== BESTILLING =====
+         Skjemaets action/_next/_subject settes fra config.bestilling.
+         Uten Formspree-ID skjules skjemaet, og e-post/telefon vises i stedet –
+         bedre enn et skjema som stille kaster bestillingene i havet. -->
+    <section class="reveal" id="bestill">
+      <h2>Bestill kake / catering</h2>
+      <p class="seksjon-ingress">Fyll ut skjemaet, så tar vi kontakt for å bekrefte bestillingen. Vi svarer så raskt vi kan i åpningstiden.</p>
+
+      <p class="skjema-fallback" data-bak-skjema-mangler hidden>
+        <strong>Skjemaet er ikke koblet opp ennå.</strong> Legg inn en Formspree-ID i
+        <code>config.js</code> for å ta imot bestillinger på nett. Inntil da bruker
+        kundene e-post og telefon under.
+      </p>
+
+      <form class="bestill-skjema" action="" method="POST">
+        <input type="hidden" name="_subject" value="Ny bestilling fra nettsiden">
+        <input type="hidden" name="_next" value="takk.html">
+
+        <div class="skjema-rad">
+          <div class="skjema-felt">
+            <label for="navn">Navn</label>
+            <input type="text" id="navn" name="Navn" autocomplete="name" placeholder="Ola Nordmann" required>
+          </div>
+          <div class="skjema-felt">
+            <label for="telefon">Telefon</label>
+            <input type="tel" id="telefon" name="Telefon" autocomplete="tel" placeholder="+47 400 00 000" required>
+          </div>
+        </div>
+
+        <div class="skjema-rad">
+          <div class="skjema-felt">
+            <label for="epost">E-post</label>
+            <input type="email" id="epost" name="email" autocomplete="email" placeholder="din@epost.no">
+          </div>
+          <div class="skjema-felt">
+            <label for="type">Hva gjelder det?</label>
+            <select id="type" name="Type">
+              <option value="Kake">Kake</option>
+              <option value="Catering">Catering</option>
+              <option value="Annet">Annet</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="skjema-rad">
+          <div class="skjema-felt">
+            <label for="antall">Antall / anledning</label>
+            <input type="text" id="antall" name="Antall/anledning" placeholder="F.eks. 20 personer, bursdag">
+          </div>
+          <div class="skjema-felt">
+            <label for="dato">Ønsket dato</label>
+            <input type="date" id="dato" name="Dato">
+          </div>
+        </div>
+
+        <div class="skjema-felt">
+          <label for="melding">Detaljer / ønsker</label>
+          <textarea id="melding" name="Melding" rows="4" placeholder="Fortell hva du ønsker deg – smak, størrelse, tekst på kaken, allergier osv."></textarea>
+        </div>
+
+        <button type="submit" class="knapp">Send bestilling</button>
+      </form>
+
+      <p class="skjema-fallback">Foretrekker du e-post? Skriv til
+        <a class="kontakt-lenke" data-bak-epost="kontakt.epost" data-bak="kontakt.epost" href="mailto:post@dittbakeri.no">post@dittbakeri.no</a>
+        eller ring <a class="kontakt-lenke" data-bak-tel="kontakt.telefonTel" data-bak="kontakt.telefon" href="tel:+4722000000">+47 22 00 00 00</a>.
+      </p>
+    </section>
+
+    <!-- ===== ÅPNINGSTIDER =====
+         Tabellen bygges fra config.apningstider – samme kilde som JSON-LD i
+         head-en, så tidene kan aldri komme i utakt med hverandre. -->
+    <section class="reveal" id="apningstider">
+      <h2>Åpningstider</h2>
+      <table class="apningstider">
+        <tr><th scope="row">Mandag</th><td>09:00–16:00</td></tr>
+        <tr><th scope="row">Tirsdag</th><td>09:00–16:00</td></tr>
+        <tr><th scope="row">Onsdag</th><td>09:00–16:00</td></tr>
+        <tr><th scope="row">Torsdag</th><td>09:00–16:00</td></tr>
+        <tr><th scope="row">Fredag</th><td>09:00–16:00</td></tr>
+        <tr><th scope="row">Lørdag</th><td>10:00–15:00</td></tr>
+        <tr><th scope="row">Søndag</th><td>Stengt</td></tr>
+      </table>
+      <p class="apningstider-note" data-bak="apningstider.note">Tider kan variere på helligdager – ring gjerne på forhånd.</p>
+    </section>
+
+    <!-- ===== KART & KONTAKT ===== -->
+    <section class="reveal" id="kontakt">
+      <h2>Finn oss</h2>
+      <div class="kontakt-grid">
+        <div class="kart">
+          <iframe title="Kart" src="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+        <div class="kontakt-info">
+          <p><span aria-hidden="true">📍</span> <span class="sr-only">Adresse:</span> <span data-bak-adresse>Storgata 1, 0155 Storby</span></p>
+          <p><span aria-hidden="true">📞</span> <span class="sr-only">Telefon:</span> <a class="kontakt-lenke" data-bak-tel="kontakt.telefonTel" data-bak="kontakt.telefon" href="tel:+4722000000">+47 22 00 00 00</a></p>
+          <p><span aria-hidden="true">📧</span> <span class="sr-only">E-post:</span> <a class="kontakt-lenke" data-bak-epost="kontakt.epost" data-bak="kontakt.epost" href="mailto:post@dittbakeri.no">post@dittbakeri.no</a></p>
+          <p>
+            <a class="knapp knapp--sekundaer" data-bak-veibeskrivelse href="#" target="_blank" rel="noopener noreferrer">Veibeskrivelse →</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p><span aria-hidden="true">📍</span> <span class="sr-only">Adresse:</span> <span data-bak-adresse>Storgata 1, 0155 Storby</span></p>
+    <p><span aria-hidden="true">📞</span> <span class="sr-only">Telefon:</span> <a class="kontakt-lenke" data-bak-tel="kontakt.telefonTel" data-bak="kontakt.telefon" href="tel:+4722000000">+47 22 00 00 00</a></p>
+    <p><span aria-hidden="true">📧</span> <span class="sr-only">E-post:</span> <a class="kontakt-lenke" data-bak-epost="kontakt.epost" data-bak="kontakt.epost" href="mailto:post@dittbakeri.no">post@dittbakeri.no</a></p>
+    <p>© <span data-bak="bedrift.aarstall">2026</span> <span data-bak="bedrift.navn">Ditt Bakeri</span></p>
+    <span data-bak-sosialt></span>
+  </footer>
+
   <script src="JS/main.js"></script>
 </body>
 </html>

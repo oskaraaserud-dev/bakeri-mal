@@ -1,77 +1,56 @@
 <!DOCTYPE html>
 <html lang="nb">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Takk for din henvendelse til Ditt Bakeri. Vi svarer så raskt vi kan.">
-    <meta name="robots" content="noindex, follow">
-    <title>Takk</title>
-    <link rel="icon" href="Bilder/logo.svg" type="image/svg+xml">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="CSS/style.css">
-  <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ═══ GENERERT BLOKK – lages av verktoy/publiser.html fra config.js ═══ -->
+  <title>Takk – Ditt Bakeri</title>
+  <meta name="description" content="Takk for bestillingen. Vi tar kontakt for å bekrefte.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="icon" href="Bilder/logo.svg" type="image/svg+xml">
+  <!-- ═══════════════════ SLUTT GENERERT BLOKK ═══════════════════ -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="CSS/style.css">
+
+  <script src="config.js"></script>
+  <script src="JS/mal.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#innhold">Hopp til innhold</a>
+
   <header>
     <a class="brand" href="index.html" aria-label="Til forsiden">
-      <img src="Bilder/logo.svg" alt="" class="header-logo" width="48" height="48">
-      <h1 class="bakerinavn">Ditt Bakeri</h1>
+      <img src="Bilder/logo.svg" data-bak-src="bilder.logo" alt="" class="header-logo" width="48" height="48">
+      <h1 data-bak="bedrift.navn">Ditt Bakeri</h1>
     </a>
-
-    <nav class="kjevle-nav" aria-label="Hovednavigasjon">
-      <span class="kjevle-handle" aria-hidden="true"></span>
-      <span class="kjevle-ring" aria-hidden="true"></span>
-      <ul class="kjevle-list">
-        <li>
-          <a href="index.html" class="kjevle-link">
-            <span class="kjevle-icon-wrap">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9a1 1 0 0 0 1 1H9v-5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v5h2.5a1 1 0 0 0 1-1v-9"/></svg>
-            </span>
-            <span class="kjevle-label">Hjem</span>
-          </a>
-        </li>
-        <li>
-          <a href="Meny.html" class="kjevle-link">
-            <span class="kjevle-icon-wrap">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
-            </span>
-            <span class="kjevle-label">Meny</span>
-          </a>
-        </li>
-        <li>
-          <a href="OmOss.html" class="kjevle-link">
-            <span class="kjevle-icon-wrap">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16"/><circle cx="12" cy="7.5" r="0.9" fill="currentColor" stroke="none"/></svg>
-            </span>
-            <span class="kjevle-label">Om oss</span>
-          </a>
-        </li>
-      </ul>
-      <span class="kjevle-ring" aria-hidden="true"></span>
-      <span class="kjevle-handle" aria-hidden="true"></span>
-    </nav>
   </header>
 
   <main id="innhold">
-    <section class="reveal">
-      <h2>Takk for din henvendelse!</h2>
-      <p>Vi har mottatt meldingen din og svarer så raskt vi kan.</p>
-      <p><a href="index.html">Tilbake til forsiden</a></p>
+    <!-- Ingen .reveal her: denne siden er en kvittering og MÅ vises selv om
+         JavaScript feiler. .reveal starter på opacity:0, så en kvittering med
+         den klassen blir usynlig hvis scriptet ikke kjører. -->
+    <section>
+      <h2>Takk for bestillingen!</h2>
+      <p>Vi har mottatt forespørselen din og tar kontakt for å bekrefte så raskt vi kan i åpningstiden.</p>
+      <p>Haster det? Ring oss på
+        <a class="kontakt-lenke" data-bak-tel="kontakt.telefonTel" data-bak="kontakt.telefon" href="tel:+4722000000">+47 22 00 00 00</a>.
+      </p>
+      <p><a class="knapp" href="index.html">Tilbake til forsiden</a></p>
     </section>
   </main>
 
- <footer>
-  <p><span aria-hidden="true">📍</span> <span class="sr-only">Adresse:</span> Storgata 1, 0170 Oslo</p>
-  <p><span aria-hidden="true">📞</span> <span class="sr-only">Telefon:</span> <a class="kontakt-lenke" href="tel:+4722334455">+47 22 33 44 55</a></p>
-  <p><span aria-hidden="true">📧</span> <span class="sr-only">E-post:</span> <a class="kontakt-lenke" href="mailto:post@dittbakeri.no">post@dittbakeri.no</a></p>
-  <p>© 2026 <span class="bakerinavn">Ditt Bakeri</span></p>
-  <a href="https://www.facebook.com/dittbakeri" target="_blank" rel="noopener noreferrer">Facebook</a>
-<a href="https://www.instagram.com/dittbakeri/" target="_blank" rel="noopener noreferrer">Instagram</a>
-</footer>
-  <script src="JS/main.js"></script>
+  <footer>
+    <p><span aria-hidden="true">📍</span> <span class="sr-only">Adresse:</span> <span data-bak-adresse>Storgata 1, 0155 Storby</span></p>
+    <p><span aria-hidden="true">📞</span> <span class="sr-only">Telefon:</span> <a class="kontakt-lenke" data-bak-tel="kontakt.telefonTel" data-bak="kontakt.telefon" href="tel:+4722000000">+47 22 00 00 00</a></p>
+    <p><span aria-hidden="true">📧</span> <span class="sr-only">E-post:</span> <a class="kontakt-lenke" data-bak-epost="kontakt.epost" data-bak="kontakt.epost" href="mailto:post@dittbakeri.no">post@dittbakeri.no</a></p>
+    <p>© <span data-bak="bedrift.aarstall">2026</span> <span data-bak="bedrift.navn">Ditt Bakeri</span></p>
+    <span data-bak-sosialt></span>
+  </footer>
 
+  <script src="JS/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publiser – bakeri-mal</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 24px;
+      background: #f5f0eb; color: #3b1f0e;
+    }
+    h1 { margin-bottom: 4px; }
+    .ingress { color: #5a4636; margin-top: 0; }
+    .steg {
+      background: #fff; border-radius: 12px; padding: 20px 22px; margin: 18px 0;
+      box-shadow: 0 3px 14px rgba(59,31,14,.07);
+    }
+    .steg h2 { margin: 0 0 6px; font-size: 1.1rem; }
+    .steg p { margin: 0 0 12px; color: #5a4636; font-size: .95rem; }
+    textarea {
+      width: 100%; box-sizing: border-box; font-family: ui-monospace, Consolas, monospace;
+      font-size: 12px; line-height: 1.45; padding: 12px; border: 1px solid #e7dccd;
+      border-radius: 8px; background: #fdfbf8; color: #3b1f0e; resize: vertical;
+    }
+    button {
+      margin-top: 10px; padding: 9px 18px; background: #3b1f0e; color: #fff;
+      border: 0; border-radius: 6px; cursor: pointer; font-size: .95rem;
+    }
+    button:hover { background: #8B4513; }
+    .ok { color: #1c6b3a; font-weight: 600; }
+    .feil {
+      background: #fdeaea; border-left: 4px solid #c0392b; padding: 12px 16px;
+      border-radius: 8px; margin: 16px 0;
+    }
+    .merk {
+      background: #fdf6e3; border-left: 4px solid #f5c842; padding: 12px 16px;
+      border-radius: 8px; margin: 16px 0; font-size: .95rem;
+    }
+    code { background: #f0e8db; padding: 1px 5px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>Publiser</h1>
+  <p class="ingress">Leser <code>config.js</code> og skriver ut alt som må være statisk i filene.</p>
+
+  <div class="merk">
+    <strong>Hvorfor må dette limes inn for hånd?</strong><br>
+    Facebook, LinkedIn og Slack kjører <em>ikke</em> JavaScript når de lager forhåndsvisning
+    av en lenke – de leser bare rå HTML. Ville vi fylt <code>&lt;head&gt;</code> i kjøretid,
+    ville en deling vist «Ditt Bakeri» i stedet for kundens navn. Derfor er head-en statisk,
+    men <em>generert herfra</em>, så du skriver aldri kundedata to steder.
+  </div>
+
+  <div id="feil"></div>
+  <div id="ut"></div>
+
+  <script src="../config.js"></script>
+  <script src="../JS/mal.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    var M = window.MAL;
+    var ut = document.getElementById('ut');
+    var feil = document.getElementById('feil');
+
+    if (!M || !window.BAKERI) {
+      feil.innerHTML = '<div class="feil"><strong>Fant ikke config.js.</strong> ' +
+        'Åpne denne fila fra <code>verktoy/</code>-mappa i prosjektet, ikke løsrevet.</div>';
+      return;
+    }
+
+    var hent = M.hent, esc = M.esc, abs = M.abs;
+
+    // --- Advar om ting som ofte glemmes ---------------------------------
+    var advarsler = [];
+    if (!/^https?:\/\/.+\/$/.test(hent('side.url', ''))) {
+      advarsler.push('<code>side.url</code> må være en full URL som slutter med skråstrek, ' +
+        'f.eks. <code>https://brukernavn.github.io/kunde/</code>. Ellers blir canonical og ' +
+        'og:image feil.');
+    }
+    if (!hent('bestilling.formspreeId')) {
+      advarsler.push('<code>bestilling.formspreeId</code> er tom – bestillingsskjemaet skjules, ' +
+        'og kundene henvises til e-post og telefon i stedet.');
+    }
+    if (/\.svg$/i.test(hent('bilder.delingsbilde', ''))) {
+      advarsler.push('<code>bilder.delingsbilde</code> peker på en SVG. <strong>Facebook godtar ' +
+        'ikke SVG</strong> – bruk PNG eller JPG på 1200×630, ellers blir delingen uten bilde.');
+    }
+    if (advarsler.length) {
+      feil.innerHTML = '<div class="feil"><strong>Sjekk dette først:</strong><ul><li>' +
+        advarsler.join('</li><li>') + '</li></ul></div>';
+    }
+
+    // --- Byggeklosser ----------------------------------------------------
+    var navn = hent('bedrift.navn');
+    var url = abs('');
+    var delingsbilde = abs(hent('bilder.delingsbilde'));
+    var logo = hent('bilder.logo');
+    var a = hent('kontakt.adresse', {});
+    var geo = hent('kontakt.geo', {});
+
+    function jsonLd() {
+      var d = {
+        '@context': 'https://schema.org',
+        '@type': 'Bakery',
+        '@id': url,
+        name: navn,
+        url: url,
+        image: delingsbilde,
+        telephone: hent('kontakt.telefon'),
+        email: hent('kontakt.epost'),
+        priceRange: hent('bedrift.priceRange', '$$'),
+        servesCuisine: hent('bedrift.serverer', []),
+        areaServed: hent('bedrift.omraade'),
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: a.gate,
+          addressLocality: a.sted,
+          postalCode: a.postnr,
+          addressRegion: a.region,
+          addressCountry: a.land
+        },
+        geo: { '@type': 'GeoCoordinates', latitude: geo.lat, longitude: geo.lng },
+        // Utledes fra SAMME config.apningstider som HTML-tabellen på siden,
+        // så tidene kan aldri komme i utakt med hverandre.
+        openingHoursSpecification: M.apningstidGrupper().map(function (g) {
+          return {
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: g.dager,
+            opens: g.opens,
+            closes: g.closes
+          };
+        })
+      };
+      var sosialt = hent('sosialt', []);
+      if (sosialt.length) d.sameAs = sosialt.map(function (s) { return s.url; });
+      if (hent('meny.grupper', []).length) d.hasMenu = abs('Meny.html');
+      return JSON.stringify(d, null, 2);
+    }
+
+    function ogTagger(tittel, beskrivelse, sideUrl) {
+      return [
+        '  <meta property="og:type" content="website">',
+        '  <meta property="og:site_name" content="' + esc(navn) + '">',
+        '  <meta property="og:locale" content="nb_NO">',
+        '  <meta property="og:title" content="' + esc(tittel) + '">',
+        '  <meta property="og:description" content="' + esc(beskrivelse) + '">',
+        '  <meta property="og:url" content="' + esc(sideUrl) + '">',
+        '  <meta property="og:image" content="' + esc(delingsbilde) + '">',
+        '  <meta property="og:image:width" content="1200">',
+        '  <meta property="og:image:height" content="630">',
+        '  <meta property="og:image:alt" content="' + esc(hent('bilder.delingsbildeAlt')) + '">',
+        '  <meta name="twitter:card" content="summary_large_image">',
+        '  <meta name="twitter:image" content="' + esc(delingsbilde) + '">'
+      ].join('\n');
+    }
+
+    var START = '  <!-- ═══ GENERERT AV verktoy/publiser.html – ikke rediger for hånd ═══ -->';
+    var SLUTT = '  <!-- ═══════════════════ SLUTT GENERERT BLOKK ═══════════════════ -->';
+
+    function headForside() {
+      var tittel = hent('side.tittel');
+      var beskr = hent('side.beskrivelse');
+      return [
+        START,
+        '  <title>' + esc(tittel) + '</title>',
+        '  <meta name="description" content="' + esc(beskr) + '">',
+        '  <link rel="canonical" href="' + esc(url) + '">',
+        '  <link rel="icon" href="' + esc(logo) + '" type="image/svg+xml">',
+        ogTagger(tittel, beskr, url),
+        '  <script type="application/ld+json">',
+        jsonLd(),
+        '  <\/script>',
+        SLUTT
+      ].join('\n');
+    }
+
+    function headMeny() {
+      var tittel = 'Meny – ' + navn;
+      var beskr = 'Menyen hos ' + navn + '. ' + hent('meny.note', '');
+      var sideUrl = abs('Meny.html');
+      var rader = [
+        START,
+        '  <title>' + esc(tittel) + '</title>',
+        '  <meta name="description" content="' + esc(beskr) + '">'
+      ];
+      if (hent('side.menyNoindex')) {
+        rader.push('');
+        rader.push('  <!-- side.menyNoindex = true i config.js: holder menysiden utenfor Google.');
+        rader.push('       Bruk det mens prisene er plassholdere. Husk å sette den til false');
+        rader.push('       – og legge Meny.html tilbake i sitemap.xml – når tallene er ekte. -->');
+        rader.push('  <meta name="robots" content="noindex, follow">');
+        rader.push('');
+      }
+      rader.push('  <link rel="canonical" href="' + esc(sideUrl) + '">');
+      rader.push('  <link rel="icon" href="' + esc(logo) + '" type="image/svg+xml">');
+      rader.push(ogTagger(tittel, beskr, sideUrl));
+      rader.push(SLUTT);
+      return rader.join('\n');
+    }
+
+    function headTakk() {
+      return [
+        START,
+        '  <title>Takk – ' + esc(navn) + '</title>',
+        '  <meta name="description" content="Takk for bestillingen. Vi tar kontakt for å bekrefte.">',
+        '  <meta name="robots" content="noindex, follow">',
+        '  <link rel="icon" href="' + esc(logo) + '" type="image/svg+xml">',
+        SLUTT
+      ].join('\n');
+    }
+
+    function sitemap() {
+      var dato = new Date().toISOString().slice(0, 10);
+      var rader = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+        '<url><loc>' + url + '</loc><lastmod>' + dato + '</lastmod><priority>1.0</priority></url>'
+      ];
+      if (hent('side.menyNoindex')) {
+        rader.push('<!-- Meny.html er utelatt fordi den står på noindex (side.menyNoindex).');
+        rader.push('     noindex + sitemap-oppføring er motstridende signaler til Google. -->');
+      } else {
+        rader.push('<url><loc>' + abs('Meny.html') + '</loc><lastmod>' + dato +
+                   '</lastmod><priority>0.8</priority></url>');
+      }
+      rader.push('</urlset>');
+      return rader.join('\n');
+    }
+
+    function robots() {
+      return ['User-agent: *', 'Allow: /', '', 'Sitemap: ' + abs('sitemap.xml'), ''].join('\n');
+    }
+
+    // --- Tegn ut ---------------------------------------------------------
+    var blokker = [
+      { tittel: '1. index.html', hjelp: 'Erstatt den genererte blokka øverst i &lt;head&gt;.', innhold: headForside(), rader: 26 },
+      { tittel: '2. Meny.html',  hjelp: 'Erstatt den genererte blokka øverst i &lt;head&gt;.', innhold: headMeny(), rader: 18 },
+      { tittel: '3. takk.html',  hjelp: 'Erstatt den genererte blokka øverst i &lt;head&gt;.', innhold: headTakk(), rader: 7 },
+      { tittel: '4. sitemap.xml', hjelp: 'Erstatt hele fila.', innhold: sitemap(), rader: 7 },
+      { tittel: '5. robots.txt',  hjelp: 'Erstatt hele fila.', innhold: robots(), rader: 5 }
+    ];
+
+    ut.innerHTML = blokker.map(function (b, i) {
+      return '<div class="steg">' +
+        '<h2>' + b.tittel + '</h2>' +
+        '<p>' + b.hjelp + '</p>' +
+        '<textarea id="ta' + i + '" rows="' + b.rader + '" readonly>' + esc(b.innhold) + '</textarea>' +
+        '<button data-mal="' + i + '">Kopier</button> <span id="ok' + i + '"></span>' +
+      '</div>';
+    }).join('');
+
+    ut.addEventListener('click', function (e) {
+      var i = e.target.getAttribute('data-mal');
+      if (i === null) return;
+      var ta = document.getElementById('ta' + i);
+      ta.select();
+      try { document.execCommand('copy'); } catch (err) {}
+      if (navigator.clipboard) navigator.clipboard.writeText(ta.value)['catch'](function () {});
+      document.getElementById('ok' + i).innerHTML = '<span class="ok">Kopiert ✓</span>';
+    });
+  })();
+  </script>
+</body>
+</html>
